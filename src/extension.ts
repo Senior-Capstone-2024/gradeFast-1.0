@@ -81,14 +81,11 @@ export function activate(context: vscode.ExtensionContext) {
 		};
 
 		function replyNote(reply: vscode.CommentReply) {
-			const thread = reply.thread;
-			const newComment = new NoteComment(reply.text, vscode.CommentMode.Preview, { name: 'vscode' }, thread, thread.comments.length ? 'canDelete' : undefined);
-			if (thread.contextValue === 'draft') {
-				newComment.label = 'pending';
-			}
-	
-			thread.comments = [...thread.comments, newComment];
-		}
+            const thread = reply.thread;
+            const newComment = new NoteComment(reply.text, vscode.CommentMode.Preview, { name: 'vscode' }, thread, thread.comments.length ? 'canDelete' : undefined);
+            thread.canReply = false;
+            thread.comments = [...thread.comments, newComment];
+        }
 
 		//These two commands allow the user to create notes and delete them.
 
