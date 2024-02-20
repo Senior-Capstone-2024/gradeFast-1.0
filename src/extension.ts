@@ -8,6 +8,7 @@ import { FtpExplorer } from './ftpExplorer';
 import { FileExplorer } from './fileExplorer';
 import { TestViewDragAndDrop } from './testViewDragAndDrop';
 import { TestView } from './testView';
+import { checkConventions } from './helpers/conventionHelper';
 
 
 //This class is a NoteComment object that is used inside the commentController API.
@@ -97,4 +98,16 @@ export function activate(context: vscode.ExtensionContext) {
 			thread.dispose();
 		}));
 /******************WILL_EAND_END OF COMMENT IMPLEMENTATIONS******************************/		
+	const workspaceReader = vscode.commands.registerCommand('extension.scanDocument', function () {
+		const activeEditor = vscode.window.activeTextEditor;
+
+		if (activeEditor) {
+			const document = activeEditor.document;
+			const documentText = document.getText();
+
+			checkConventions(documentText);
+		}
+	});
+
+	context.subscriptions.push(workspaceReader);
 }

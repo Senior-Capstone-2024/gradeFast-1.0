@@ -66,6 +66,10 @@
 		},
 		"commands": [
 			{
+				"command": "extension.scanDocument",
+				"title": "Scan active workspace..."
+			},
+			{
 				"command": "nodeDependencies.refreshEntry",
 				"title": "Refresh",
 				"icon": {
@@ -158,7 +162,6 @@
 					"light": "resources/close.svg"
 				}
 			}
-			
 		],
 		"menus": {
 			"commandPalette": [
@@ -271,6 +274,7 @@
 	"dependencies": {
 		"ftp": "^0.3.10",
 		"jsonc-parser": "^0.4.2",
+		"magic-regexp": "^0.7.0",
 		"minimist": "^1.2.6",
 		"mkdirp": "^0.5.1",
 		"rimraf": "^2.6.2"
