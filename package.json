@@ -60,7 +60,11 @@
 			{
 				"command": "extension.findCapitalizedPrimitiveTypes",
 				"title": "findCapitalizedPrimitiveTypes"
-			  }
+			},
+			{
+				"command": "extension.findLowercaseClassOrInterface",
+				"title": "findLowercaseClassOrInterface"
+			}
 			
 		],
 		"menus": {
