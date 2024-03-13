@@ -26,14 +26,18 @@ export function findCapitalizedPrimitiveTypes() {
 		
 		const pattern = /\b(?:int|double|Boolean|char|byte|long|String)\s+([A-Z])(\w*)\b/g;
 
-		const errorLines = []; // Array to store line numbers with errors
+		const errorLines: string[] = [];
+ // Array to store line numbers with errors
 		// Find matches
 		let match;
 		while ((match = pattern.exec(text)) !== null) {
 			// Get the matched variable name
 
-			const lineNumber = document.positionAt(match.index).line;
-            errorLines.push(lineNumber+1);
+			let lineNumber = document.positionAt(match.index).line;
+			lineNumber = lineNumber+1;
+			let myString: string = lineNumber.toString();
+			myString = "Improper Capitalized Primitive Type on line: " + myString;
+            errorLines.push(myString);
 		
 			const variableName = match[0]; // Entire matched variable name
 			const firstLetterIndex = match.index + match[0].indexOf(match[1]); // Index of the first letter after the primitive data type
