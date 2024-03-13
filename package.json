@@ -64,8 +64,11 @@
 			{
 				"command": "extension.findLowercaseClassOrInterface",
 				"title": "findLowercaseClassOrInterface"
+			},
+			{
+			    "command": "extension.findCapitalizedMethodName",
+				"title": "findCapitalizedMethodName"
 			}
-			
 		],
 		"menus": {
 			"commandPalette": [

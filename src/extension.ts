@@ -4,13 +4,14 @@ import * as vscode from 'vscode';
 import { NoteComment, NoteCommentController } from './noteComment';
 import { findCapitalizedPrimitiveTypes } from './findCapitalizedPrimitiveTypes';
 import { findLowercaseClassOrInterface } from './findLowercaseClassOrInterface';
+import { findCapitalizedMethodName } from './findCapitalizedMethodName';
 
 export function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "Java convention commands" is now active!');
 
     const disposable = vscode.commands.registerCommand('extension.findCapitalizedPrimitiveTypes', findCapitalizedPrimitiveTypes);
     const disposable1 = vscode.commands.registerCommand('extension.findLowercaseClassOrInterface', findLowercaseClassOrInterface);
-
+	const disposable2 = vscode.commands.registerCommand('extension.findCapitalizedMethodName', findCapitalizedMethodName);
 	
 	const commentController = vscode.comments.createCommentController('comment-sample', 'Comment API Sample');
 	context.subscriptions.push(commentController);
