@@ -1,7 +1,9 @@
 import * as vscode from 'vscode';
+import * as fs from 'fs';
 
 //     const disposable = vscode.commands.registerCommand('extension.findCapitalizedPrimitiveTypes', findCapitalizedPrimitiveTypes);
 
+const outputFile = '/Users/willscomputer/Documents/ptesting/gradeFast-1.0/src/OutputTesting/error_lines.txt';
 
 export function findCapitalizedPrimitiveTypes() {
 	// activeTextEditor allows access to text inside opened document.
@@ -23,10 +25,15 @@ export function findCapitalizedPrimitiveTypes() {
 		// 9. `g` means the pattern should be applied globally to find all matches in the input text.
 		
 		const pattern = /\b(?:int|double|Boolean|char|byte|long|String)\s+([A-Z])(\w*)\b/g;
+
+		const errorLines = []; // Array to store line numbers with errors
 		// Find matches
 		let match;
 		while ((match = pattern.exec(text)) !== null) {
 			// Get the matched variable name
+
+			const lineNumber = document.positionAt(match.index).line;
+            errorLines.push(lineNumber+1);
 		
 			const variableName = match[0]; // Entire matched variable name
 			const firstLetterIndex = match.index + match[0].indexOf(match[1]); // Index of the first letter after the primitive data type
@@ -50,7 +57,7 @@ export function findCapitalizedPrimitiveTypes() {
 			}), [firstLetterRange]);
 			
 		}
-		
+		fs.writeFileSync(outputFile, errorLines.join('\n'));
 	} else {
 		vscode.window.showErrorMessage('No active text editor.');
 	}
