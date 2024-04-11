@@ -68,6 +68,10 @@
 			{
 			    "command": "extension.findCapitalizedMethodName",
 				"title": "findCapitalizedMethodName"
+			},
+			{
+			    "command": "extension.singleStatementPerLineChecker",
+				"title": "singleStatementPerLineChecker"
 			}
 		],
 		"menus": {
