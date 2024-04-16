@@ -3,7 +3,7 @@ import * as fs from 'fs';
 
 //     const disposable = vscode.commands.registerCommand('extension.findCapitalizedPrimitiveTypes', findCapitalizedPrimitiveTypes);
 
-const outputFile = '/Users/sealion/gradeFast-1.0/src/error_lines.txt';
+const outputFile = '/Users/sealion/capstone/gradeFast-1.0/src/error_lines.txt';
 
 export function findCapitalizedPrimitiveTypes() {
 	// activeTextEditor allows access to text inside opened document.

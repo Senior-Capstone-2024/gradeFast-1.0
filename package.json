@@ -72,7 +72,11 @@
 			{
 			    "command": "extension.singleStatementPerLineChecker",
 				"title": "singleStatementPerLineChecker"
-			}
+			},
+			{
+                "command": "extension.findAllErrors",
+                "title": "findAllErrors"
+            }
 		],
 		"menus": {
 			"commandPalette": [
