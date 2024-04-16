@@ -3,7 +3,7 @@ import * as fs from 'fs';
 
 //     const disposable = vscode.commands.registerCommand('extension.findCapitalizedPrimitiveTypes', findCapitalizedPrimitiveTypes);
 
-const outputFile = '/Users/willscomputer/Documents/ptesting/gradeFast-1.0/src/OutputTesting/error_lines.txt';
+const outputFile = '/Users/sealion/capstone/gradeFast-1.0/src/error_lines.txt';
 
 export function findCapitalizedPrimitiveTypes() {
 	// activeTextEditor allows access to text inside opened document.
@@ -24,7 +24,7 @@ export function findCapitalizedPrimitiveTypes() {
 		// 8. The `/` marks the end of the pattern.
 		// 9. `g` means the pattern should be applied globally to find all matches in the input text.
 		
-		const pattern = /\b(?:int|double|Boolean|char|byte|long|String)\s+([A-Z])(\w*)\b/g;
+		const pattern = /\b(?:int|double|boolean|Boolean|char|byte|long|String)\s+([A-Z])(\w*)\b/g;
 
 		const errorLines: string[] = [];
  // Array to store line numbers with errors
