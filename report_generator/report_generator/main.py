@@ -6,7 +6,7 @@ from pylatex import Document, Section, LineBreak, NewPage, PageStyle, Package
 from pylatex.utils import bold, NoEscape
 
 import os
-from os import join, dirname
+from os import path
 import sys
 
 from util.parse_json import json_to_dict
@@ -28,8 +28,9 @@ def assemble_pdf(data: dict):
     data = json_to_dict(data)
     
   # load path to pdflatex
-  dotenv_path = join(dirname(__file__), '.env')
+  dotenv_path = path.join(path.dirname(__file__), '.env')
   load_dotenv(dotenv_path)
+  print(dotenv_path)
   PDFLATEX_PATH = os.environ.get('PDFLATEX_PATH')
     
   doc = format_doc()
@@ -41,7 +42,7 @@ def assemble_pdf(data: dict):
     
   doc.append(NewPage())
   
-  doc.generate_pdf('out/out', clean_tex=False, compiler=PDFLATEX_PATH)
+  doc.generate_pdf('report_out/report_out', clean_tex=False, compiler=PDFLATEX_PATH)
   # doc = format_doc()
   # doc.append(NewPage())
   # doc.generate_pdf('out/out', clean_tex=False, compiler='pdflatex', silent=False)
