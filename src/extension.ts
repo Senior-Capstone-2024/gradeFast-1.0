@@ -8,6 +8,7 @@ import { findCapitalizedMethodName } from './findCapitalizedMethodName';
 import { singleStatementPerLineChecker } from './singleStatementPerLineChecker';
 import { findAllErrors } from './findAllErrors';
 import { findConstantCap} from './findConstantCap';
+import { findLowercaseEnums } from './findLowercaseEnums';
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('Congratulations, your extension "Java convention commands" is now active!');
