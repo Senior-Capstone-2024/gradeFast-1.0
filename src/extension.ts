@@ -7,6 +7,7 @@ import { findLowercaseClassOrInterface } from './findLowercaseClassOrInterface';
 import { findCapitalizedMethodName } from './findCapitalizedMethodName';
 import { singleStatementPerLineChecker } from './singleStatementPerLineChecker';
 import { findAllErrors } from './findAllErrors';
+import { findConstantCap} from './findConstantCap';
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('Congratulations, your extension "Java convention commands" is now active!');
@@ -16,6 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
     const disposable2 = vscode.commands.registerCommand('extension.findCapitalizedMethodName', findCapitalizedMethodName);
     const disposable3 = vscode.commands.registerCommand('extension.singleStatementPerLineChecker', singleStatementPerLineChecker);
     const disposable0 = vscode.commands.registerCommand('extension.findAllErrors', findAllErrors);
+	const disposable4 = vscode.commands.registerCommand('extension.findConstantCap', findConstantCap);
 
     
     const commentController = vscode.comments.createCommentController('comment-sample', 'Comment API Sample');
