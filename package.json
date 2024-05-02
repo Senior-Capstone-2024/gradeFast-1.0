@@ -80,6 +80,10 @@
 			{
 				"command": "extension.findConstantCap",
                 "title": "findConstantCap"
+			},
+			{
+				"command": "extension.findLowercaseEnums",
+				"title": "findLowercaseEnums"
 			}
 		],
 		"menus": {
