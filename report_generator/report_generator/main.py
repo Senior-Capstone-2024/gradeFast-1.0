@@ -42,7 +42,7 @@ def assemble_pdf(data: dict):
     
   doc.append(NewPage())
   
-  doc.generate_pdf('report_out/report_out', clean_tex=False, compiler=PDFLATEX_PATH)
+  doc.generate_pdf('report_out/report_out', clean_tex=False, compiler="C:/Users/senla/AppData/Local/Programs/MiKTeX/miktex/bin/x64/pdflatex.exe")
   # doc = format_doc()
   # doc.append(NewPage())
   # doc.generate_pdf('out/out', clean_tex=False, compiler='pdflatex', silent=False)

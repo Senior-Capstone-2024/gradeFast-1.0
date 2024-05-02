@@ -76,7 +76,11 @@
 			{
                 "command": "extension.findAllErrors",
                 "title": "findAllErrors"
-            }
+            },
+			{
+				"command": "extension.findLowercaseEnums",
+				"title": "findLowercaseEnums"
+			}
 		],
 		"menus": {
 			"commandPalette": [
