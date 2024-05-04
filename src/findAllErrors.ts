@@ -12,7 +12,7 @@ import { singleStatementPerLineChecker } from "./singleStatementPerLineChecker";
 // Call all methods
 export function findAllErrors() { 
     findCapitalizedMethodName();
-    findCapitalizedPrimitiveTypes();
+    // findCapitalizedPrimitiveTypes();
     findLowercaseClassOrInterface();
     singleStatementPerLineChecker();    
 }
