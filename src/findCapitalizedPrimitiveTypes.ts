@@ -47,15 +47,6 @@ export function findCapitalizedPrimitiveTypes(myMap: Map<number, string[]>): Map
             currentErrors.push(errorMessage);
             myMap.set(lineNumber, currentErrors);
         }
-
-        // Convert the map to a JSON string
-        const mapAsObject: { [key: number]: string[] } = {};
-        myMap.forEach((value, key) => { mapAsObject[key] = value; });
-        const jsonString = JSON.stringify(mapAsObject);
-
-        // Write the JSON string to a file
-        fs.writeFileSync('/Users/willscomputer/gradeFast-1.0/src/outputJson/data.json', jsonString);
-        console.log('JSON file created successfully.');
     } else {
         vscode.window.showErrorMessage('No active text editor.');
     }
