@@ -84,6 +84,10 @@
 			{
 				"command": "extension.findLowercaseEnums",
 				"title": "findLowercaseEnums"
+			}, 
+			{
+				"command": "extension.findDuplicateCode",
+				"title": "findDuplicateCode"
 			}
 		],
 		"menus": {
