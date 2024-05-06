@@ -8,6 +8,9 @@ import { findCapitalizedMethodName } from './findCapitalizedMethodName';
 import { singleStatementPerLineChecker } from './singleStatementPerLineChecker';
 import { findAllErrors } from './findAllErrors';
 import { convertMapToJson } from './convertMapToJson';
+import { findDuplicateCode } from './findDuplicateCode';
+import { findLowercaseEnums } from './findLowercaseEnums';
+import { findConstantCap} from './findConstantCap';
 
 const myMap: Map<number, string[]> = new Map();
 const filePath = 'C:\\Users\\Will\\Desktop\\cw\\gradeFast-1.0\\output\\data.json';
@@ -31,8 +34,14 @@ export function activate(context: vscode.ExtensionContext) {
     const disposable3 = vscode.commands.registerCommand('extension.singleStatementPerLineChecker', () => {
         singleStatementPerLineChecker(myMap);
     } );
-    
+
+    const disposable4 = vscode.commands.registerCommand('extension.findDuplicateCode', findDuplicateCode);
+
+    const disposable5 = vscode.commands.registerCommand('extension.findLowercaseEnums', findLowercaseEnums);
+
     const disposable0 = vscode.commands.registerCommand('extension.findAllErrors', findAllErrors);
+
+    const disposable6 = vscode.commands.registerCommand('extension.findConstantCap', findConstantCap);
 
     const commentController = vscode.comments.createCommentController('comment-sample', 'Comment API Sample');
     context.subscriptions.push(commentController);
