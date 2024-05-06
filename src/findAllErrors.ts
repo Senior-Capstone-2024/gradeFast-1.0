@@ -11,7 +11,7 @@ import { singleStatementPerLineChecker } from "./singleStatementPerLineChecker";
 
 // Call all methods
 export function findAllErrors() { 
-    findCapitalizedMethodName();
+    // findCapitalizedMethodName();
     // findCapitalizedPrimitiveTypes();
     findLowercaseClassOrInterface();
     singleStatementPerLineChecker();    
