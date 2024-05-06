@@ -28,7 +28,10 @@ export function activate(context: vscode.ExtensionContext) {
         findLowercaseClassOrInterface(myMap);
     } );
     
-    const disposable3 = vscode.commands.registerCommand('extension.singleStatementPerLineChecker', singleStatementPerLineChecker);
+    const disposable3 = vscode.commands.registerCommand('extension.singleStatementPerLineChecker', () => {
+        singleStatementPerLineChecker(myMap);
+    } );
+    
     const disposable0 = vscode.commands.registerCommand('extension.findAllErrors', findAllErrors);
 
     const commentController = vscode.comments.createCommentController('comment-sample', 'Comment API Sample');
