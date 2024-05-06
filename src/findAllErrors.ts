@@ -13,6 +13,6 @@ import { singleStatementPerLineChecker } from "./singleStatementPerLineChecker";
 export function findAllErrors() { 
     // findCapitalizedMethodName();
     // findCapitalizedPrimitiveTypes();
-    findLowercaseClassOrInterface();
-    singleStatementPerLineChecker();    
+    // findLowercaseClassOrInterface();
+    // singleStatementPerLineChecker();    
 }

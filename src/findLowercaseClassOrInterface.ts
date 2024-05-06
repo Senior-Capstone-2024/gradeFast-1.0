@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 
-export function findLowercaseClassOrInterface() {
+export function findLowercaseClassOrInterface(myMap: Map<number, string[]>): Map<number, string[]> {
 	// activeTextEditor allows access to text inside opened document.
 	vscode.window.showInformationMessage('Naming Convention Mistake!! Highlighted in RED=');
 	const editor = vscode.window.activeTextEditor;
@@ -23,7 +23,7 @@ export function findLowercaseClassOrInterface() {
 		let match;
 		while ((match = pattern.exec(text)) !== null) {
 			// Get the matched variable name
-		
+			const lineNumber = document.positionAt(match.index).line + 1; // Get the line number
 			const variableName = match[0]; // Entire matched variable name
 			const firstLetterIndex = match.index + match[0].indexOf(match[1]); // Index of the first letter after class
 			const firstLetterRange = new vscode.Range(document.positionAt(firstLetterIndex), document.positionAt(firstLetterIndex + 1));
@@ -44,10 +44,18 @@ export function findLowercaseClassOrInterface() {
 					backgroundColor: 'rgba(255, 0, 0, 0.4)'
 				}
 			}), [firstLetterRange]);
-			
+
+			if (!myMap.has(lineNumber)) {
+                myMap.set(lineNumber, []);
+            }
+            const errorMessage = "Improper Class Or Interface";
+            const currentErrors = myMap.get(lineNumber) || [];
+            currentErrors.push(errorMessage);
+            myMap.set(lineNumber, currentErrors);
 		}
 		
 	} else {
 		vscode.window.showErrorMessage('No active text editor.');
 	}
+	return myMap;
 }
