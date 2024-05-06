@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 
-export function singleStatementPerLineChecker(): number[] {
-    const problematicLines: number[] = []; // Array to store line numbers with multiple semicolons
+export function singleStatementPerLineChecker(myMap: Map<number, string[]>): Map<number, string[]> {
+    
 
     // Get the currently active text editor
     const editor = vscode.window.activeTextEditor;
@@ -16,17 +16,23 @@ export function singleStatementPerLineChecker(): number[] {
 
         lines.forEach((lineText, lineNumber) => {
 
-			const isForLoop = /^\s*for\s*\([^;]*;[^;]*;[^;]*\)\s*{/i.test(lineText);
+            const isForLoop = /^\s*for\s*\([^;]*;[^;]*;[^;]*\)\s*{/i.test(lineText);
 
-			if (!isForLoop){
-            const semicolonCount = (lineText.match(/;/g) || []).length;
-            if (semicolonCount > 1) {
-                // Add the line number to the array
-                problematicLines.push(lineNumber + 1); // Add 1 because line numbers start from 1
+            if (!isForLoop) {
+                const semicolonCount = (lineText.match(/;/g) || []).length;
+                if (semicolonCount > 1) {     
+
+                    // Error handling logic
+                    if (!myMap.has(lineNumber + 1)) {
+                        myMap.set(lineNumber + 1, []);
+                    }
+                    const errorMessage = "Too many statements on this line, revise";
+                    const currentErrors = myMap.get(lineNumber + 1) || [];
+                    currentErrors.push(errorMessage);
+                    myMap.set(lineNumber + 1, currentErrors);
+                }
             }
-        }});
+        });
     }
-	vscode.window.showInformationMessage(`Problematic lines: ${problematicLines.join(', ')}`);
-	return problematicLines;
-    
+    return myMap;
 }
