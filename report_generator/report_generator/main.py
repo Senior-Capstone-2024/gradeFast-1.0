@@ -1,5 +1,5 @@
 '''
-call with "python3 report_generator/main.py assemble_pdf path/to/json"
+call with "python3 report_generator/main.py path/to/json"
 '''
 from dotenv import load_dotenv
 from pylatex import Document, Section, LineBreak, NewPage, PageStyle, Package
@@ -8,6 +8,7 @@ from pylatex.utils import bold, NoEscape
 import os
 from os import path
 import sys
+import json
 
 from util.parse_json import json_to_dict
 # from classes.Assignment import Assignment
@@ -22,11 +23,11 @@ def format_doc():
   doc.change_document_style('empty')
   return doc
 
-def assemble_pdf(data: dict):
-  print(data)
-  if (isinstance(data, dict) is False):
-    data = json_to_dict(data)
-    
+def assemble_pdf(json_file_path: str):
+  # Load JSON data from file
+  with open(json_file_path, 'r') as f:
+    data = json.load(f)
+  
   # load path to pdflatex
   dotenv_path = path.join(path.dirname(__file__), '.env')
   load_dotenv(dotenv_path)
@@ -38,7 +39,9 @@ def assemble_pdf(data: dict):
   keys = list(data.keys())
   with doc.create(Section(NoEscape(r'\centerline{' + keys[0] + '}'), numbering=False)):
     for key in keys:
+      doc.append(key + ":")
       doc.append(data.get(key))
+      doc.append('\n')
     
   doc.append(NewPage())
   
@@ -48,4 +51,4 @@ def assemble_pdf(data: dict):
   # doc.generate_pdf('out/out', clean_tex=False, compiler='pdflatex', silent=False)
   
 if __name__ == '__main__':
-  globals()[sys.argv[1]](sys.argv[2])
+  assemble_pdf(sys.argv[1])
