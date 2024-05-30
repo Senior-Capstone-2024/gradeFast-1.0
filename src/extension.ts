@@ -13,7 +13,7 @@ import { findLowercaseEnums } from './findLowercaseEnums';
 import { findConstantCap} from './findConstantCap';
 
 const myMap: Map<number, string[]> = new Map();
-const filePath = 'C:\\Users\\Will\\Desktop\\cw\\gradeFast-1.0\\output\\data.json';
+const filePath = 'C:\\Users\\Will\\Desktop\\cww\\gradeFast-1.0\\output\\data.json';
 
 
 export function activate(context: vscode.ExtensionContext) {
@@ -26,7 +26,6 @@ export function activate(context: vscode.ExtensionContext) {
         findCapitalizedMethodName(myMap);
     } );
 
-
     const disposable1 = vscode.commands.registerCommand('extension.findLowercaseClassOrInterface', () => {
         findLowercaseClassOrInterface(myMap);
     } );
@@ -37,7 +36,9 @@ export function activate(context: vscode.ExtensionContext) {
 
     const disposable4 = vscode.commands.registerCommand('extension.findDuplicateCode', findDuplicateCode);
 
-    const disposable5 = vscode.commands.registerCommand('extension.findLowercaseEnums', findLowercaseEnums);
+    const disposable5 = vscode.commands.registerCommand('extension.findLowercaseEnums', () => {
+        findLowercaseEnums(myMap);
+    } );
 
     const disposable0 = vscode.commands.registerCommand('extension.findAllErrors', findAllErrors);
 
