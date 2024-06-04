@@ -11,9 +11,10 @@ import { convertMapToJson } from './convertMapToJson';
 import { findDuplicateCode } from './findDuplicateCode';
 import { findLowercaseEnums } from './findLowercaseEnums';
 import { findConstantCap} from './findConstantCap';
+import { longMethod } from './longMethod';
 
 const myMap: Map<number, string[]> = new Map();
-const filePath = 'C:\\Users\\Will\\Desktop\\cww\\gradeFast-1.0\\output\\data.json';
+const filePath = 'C:\\Users\\Will\\Desktop\\cw\\gradeFast-1.0\\output\\data.json';
 
 
 export function activate(context: vscode.ExtensionContext) {
@@ -53,6 +54,10 @@ export function activate(context: vscode.ExtensionContext) {
             return [new vscode.Range(0, 0, lineCount - 1, 0)];
         }
     };
+
+    const disposable7 = vscode.commands.registerCommand('extension.longMethod', () => {
+        longMethod(myMap);
+    } );
 
     NoteCommentController.registerCommands(context);
 }
