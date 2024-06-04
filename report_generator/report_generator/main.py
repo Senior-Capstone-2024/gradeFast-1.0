@@ -3,6 +3,7 @@ call with "python3 report_generator/main.py path/to/json"
 '''
 from dotenv import load_dotenv
 from pylatex import Document, Section, LineBreak, NewPage, PageStyle, Package
+from pylatex.base_classes import Environment
 from pylatex.utils import bold, NoEscape
 
 import os
@@ -13,6 +14,15 @@ import json
 from util.parse_json import json_to_dict
 # from classes.Assignment import Assignment
 
+class syntax_code(Environment):
+  _latex_name = 'minted'
+  #packages = [Package('minted')]
+  start_arguments = 'java'
+  escape = False
+  content_separator = '\n'
+  def __init__(self, *, options=None, arguments=None, start_arguments=start_arguments, **kwargs):
+    super().__init__(options=options, arguments=arguments, start_arguments=start_arguments, **kwargs)
+
 def format_doc():
   
   geometry_options = {
@@ -21,34 +31,44 @@ def format_doc():
   
   doc = Document(geometry_options=geometry_options)
   doc.change_document_style('empty')
+  doc.packages.append(Package(name='minted'))
+  doc.packages.append(Package(name='setspace'))
+  doc.preamble.append(NoEscape(r'\SetSinglespace{1.1}'))
+  doc.preamble.append(NoEscape(r'\singlespacing'))
   return doc
 
-def assemble_pdf(json_file_path: str):
+def assemble_pdf(json_file_path: str, assignment_path: str):
+  assignment = open(assignment_path).read().splitlines()
+
   # Load JSON data from file
   with open(json_file_path, 'r') as f:
     data = json.load(f)
-  
+
+  data: dict
   # load path to pdflatex
   dotenv_path = path.join(path.dirname(__file__), '.env')
   load_dotenv(dotenv_path)
-  print(dotenv_path)
   PDFLATEX_PATH = os.environ.get('PDFLATEX_PATH')
     
   doc = format_doc()
     
   keys = list(data.keys())
+  print(keys)
   with doc.create(Section(NoEscape(r'\centerline{' + keys[0] + '}'), numbering=False)):
-    for key in keys:
-      doc.append(key + ":")
-      doc.append(data.get(key))
-      doc.append('\n')
-    
-  doc.append(NewPage())
+    for count, line in enumerate(assignment):
+      if data.get(str(count + 1)) is not None:
+        text = data.get(str(count + 1))
+        doc.append(str(text))
+      else:
+        with doc.create(syntax_code()):
+          # text = ''.join([line])
+          text = (line)
+          doc.append(text)
   
-  doc.generate_pdf('report_out/report_out', clean_tex=False, compiler=PDFLATEX_PATH)
+  doc.generate_pdf('out/out', clean_tex=False, compiler=PDFLATEX_PATH, compiler_args=['-shell-escape'])
   # doc = format_doc()
   # doc.append(NewPage())
   # doc.generate_pdf('out/out', clean_tex=False, compiler='pdflatex', silent=False)
   
 if __name__ == '__main__':
-  assemble_pdf(sys.argv[1])
+  assemble_pdf(sys.argv[1], sys.argv[2])
