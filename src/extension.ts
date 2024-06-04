@@ -21,8 +21,12 @@ const filePath = 'C:\\Users\\Will\\Desktop\\cw\\gradeFast-1.0\\output\\data.json
 export function activate(context: vscode.ExtensionContext) {
     const disposable = vscode.commands.registerCommand('extension.findCapitalizedPrimitiveTypes', () => {
         findCapitalizedPrimitiveTypes(myMap);
-        convertMapToJson(myMap, filePath);
     });
+
+    const create = vscode.commands.registerCommand('extension.createJSON', ()=> {
+        convertMapToJson(myMap, filePath);
+    }
+    )
 
     const disposable2 = vscode.commands.registerCommand('extension.findCapitalizedMethodName', () => {
         findCapitalizedMethodName(myMap);

@@ -96,6 +96,10 @@
 			{
 				"command": "extension.longParameters",
 				"title": "findLongParameters"
+			},
+			{
+				"command": "extension.createJSON",
+				"title": "createJSON"
 			}
 		],
 		"menus": {
