@@ -12,6 +12,7 @@ import { findDuplicateCode } from './findDuplicateCode';
 import { findLowercaseEnums } from './findLowercaseEnums';
 import { findConstantCap} from './findConstantCap';
 import { longMethod } from './longMethod';
+import { longParameters } from './longParameters';
 
 const myMap: Map<number, string[]> = new Map();
 const filePath = 'C:\\Users\\Will\\Desktop\\cw\\gradeFast-1.0\\output\\data.json';
@@ -45,6 +46,14 @@ export function activate(context: vscode.ExtensionContext) {
 
     const disposable6 = vscode.commands.registerCommand('extension.findConstantCap', findConstantCap);
 
+    const disposable7 = vscode.commands.registerCommand('extension.longMethod', () => {
+        longMethod(myMap);
+    } );
+
+    const disposable8 = vscode.commands.registerCommand('extension.longParameters', () => {
+        longParameters(myMap);
+    } );
+
     const commentController = vscode.comments.createCommentController('comment-sample', 'Comment API Sample');
     context.subscriptions.push(commentController);
 
@@ -54,10 +63,6 @@ export function activate(context: vscode.ExtensionContext) {
             return [new vscode.Range(0, 0, lineCount - 1, 0)];
         }
     };
-
-    const disposable7 = vscode.commands.registerCommand('extension.longMethod', () => {
-        longMethod(myMap);
-    } );
 
     NoteCommentController.registerCommands(context);
 }

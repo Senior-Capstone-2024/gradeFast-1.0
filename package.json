@@ -92,6 +92,10 @@
 			{
 				"command": "extension.longMethod",
 				"title": "findLongMethod"
+			},
+			{
+				"command": "extension.longParameters",
+				"title": "findLongParameters"
 			}
 		],
 		"menus": {
