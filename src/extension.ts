@@ -13,6 +13,7 @@ import { findLowercaseEnums } from './findLowercaseEnums';
 import { findConstantCap} from './findConstantCap';
 import { longMethod } from './longMethod';
 import { longParameters } from './longParameters';
+import { badSwitch } from './badSwitch';
 
 const myMap: Map<number, string[]> = new Map();
 const filePath = 'C:\\Users\\Will\\Desktop\\cw\\gradeFast-1.0\\output\\data.json';
@@ -56,6 +57,10 @@ export function activate(context: vscode.ExtensionContext) {
 
     const disposable8 = vscode.commands.registerCommand('extension.longParameters', () => {
         longParameters(myMap);
+    } );
+
+    const disposable9 = vscode.commands.registerCommand('extension.badSwitch', () => {
+        badSwitch(myMap);
     } );
 
     const commentController = vscode.comments.createCommentController('comment-sample', 'Comment API Sample');
