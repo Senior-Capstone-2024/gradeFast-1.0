@@ -1,1 +1,1 @@
-{"12":["Code Smell: Consider refactoring to reduce method length"],"30":["Code smell found: Long Parameters in method public static int addNumbers (int a, int b, int c, int d){"],"38":["Code Smell: Consider refactoring to reduce method length"]}
+{"69":["Similar logic found in switch cases based on character usage","Similar logic found in switch cases based on character usage","Similar logic found in switch cases based on character usage"],"92":["Similar logic found in switch cases based on character usage","Similar logic found in switch cases based on character usage"]}
