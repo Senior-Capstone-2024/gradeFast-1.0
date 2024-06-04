@@ -88,6 +88,10 @@
 			{
 				"command": "extension.findDuplicateCode",
 				"title": "findDuplicateCode"
+			},
+			{
+				"command": "extension.longMethod",
+				"title": "findLongMethod"
 			}
 		],
 		"menus": {
