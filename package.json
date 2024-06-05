@@ -18,7 +18,8 @@
 	],
 	"activationEvents": [
 		"onLanguage:json",
-		"onLanguage:jsonc"
+		"onLanguage:jsonc",
+		"onView:gradefast-home"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -28,10 +29,26 @@
 					"id": "package-explorer",
 					"title": "GradeFast",
 					"icon": "media/logo.svg"
-				}
+				},
+				{
+          "id": "gradefast",
+          "title": "GradeFast",
+          "icon": "media/logo.png"
+        }
 			]
 		},
 		"views": {
+			"gradefast":[
+        {
+          "id": "gradefast-home",
+          "name": "Home",
+					"type": "tree"
+        },
+        {
+          "id": "gradefast-section",
+          "name": "Section"
+        }
+      ],
 			"package-explorer": [
 				{
 					"id": "nodeDependencies",
@@ -43,7 +60,33 @@
 			"explorer": [
 			]
 		},
+		"viewsWelcome": [
+			{
+				"view": "gradefast-home",
+				"contents": "Open a student's assignment directory to begin grading. \n[Pick a folder](command:workbench.action.files.openFolder)\n[Generate Report](command:extension.generateReport)"
+			}
+		],
 		"commands": [
+			{
+				"command": "extension.generateReport",
+				"title": "Generate Report"
+			},
+			{
+				"command": "mywiki.editNote",
+				"title": "Edit",
+				"icon": {
+					"dark": "resources/edit_inverse.svg",
+					"light": "resources/edit.svg"
+				}
+			},
+			{
+				"command": "mywiki.saveNote",
+				"title": "Save"
+			},
+			{
+				"command": "mywiki.cancelsaveNote",
+				"title": "Cancel"
+			},
 			{
 				"command": "mywiki.createNote",
 				"title": "Create Note",
@@ -125,11 +168,30 @@
 			],
 			"view/item/context": [
 			],
+			"comments/comment/context": [
+				{
+					"command": "mywiki.cancelsaveNote",
+					"group": "inline@1",
+					"when": "commentController == comment-sample"
+				},
+				{
+					"command": "mywiki.saveNote",
+					"group": "inline@2",
+					"when": "commentController == comment-sample"
+				}
+			],
 			"comments/commentThread/context": [
 				{
 					"command": "mywiki.createNote",
 					"group": "inline",
 					"when": "commentController == comment-sample && commentThreadIsEmpty"
+				}
+			],
+			"comments/comment/title": [
+				{
+					"command": "mywiki.editNote",
+					"group": "group@1",
+					"when": "commentController == comment-sample"
 				}
 			],
 			"comments/commentThread/title": [

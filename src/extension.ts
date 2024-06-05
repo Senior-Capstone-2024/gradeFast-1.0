@@ -1,6 +1,7 @@
 'use strict';
 
 import * as vscode from 'vscode';
+import * as path from 'path';
 import { NoteCommentController } from './noteComment';
 import { findCapitalizedPrimitiveTypes } from './findCapitalizedPrimitiveTypes';
 import { findLowercaseClassOrInterface } from './findLowercaseClassOrInterface';
@@ -21,6 +22,14 @@ const filePath = 'C:\\Users\\senla\\OneDrive\\Documents\\capstone\\gradeFast-1.0
 
 
 export function activate(context: vscode.ExtensionContext) {
+    vscode.commands.executeCommand('workbench.action.files.setActiveEditorReadonlyInSession');
+
+    const pdfMaker = new MakePdf(context);
+
+    const generateReport = vscode.commands.registerCommand('extension.generateReport', () => {
+        pdfMaker.runPython();
+    });
+    
     const disposable = vscode.commands.registerCommand('extension.findCapitalizedPrimitiveTypes', () => {
         findCapitalizedPrimitiveTypes(myMap);
     } );
@@ -78,4 +87,53 @@ export function activate(context: vscode.ExtensionContext) {
     };
 
     NoteCommentController.registerCommands(context);
+}
+
+class MakePdf {
+    // private _outputchannel: vscode.OutputChannel;
+    // private _context: vscode.ExtensionContext;
+    private _path: string;
+    private _activeFileName: string | undefined;
+    private _activeFilePath: string | undefined;
+    private _activeDir: string | undefined;
+    // private data: string = JSON.stringify()
+    
+    
+    constructor(context: vscode.ExtensionContext) {
+        // this._context = context;
+        this._path = filePath;
+        this._activeFileName = vscode.window.activeTextEditor?.document.fileName;
+        if (this._activeFileName !== undefined) {
+            this._activeFilePath = path.join(this._activeFileName);
+        }
+        if (vscode.workspace.workspaceFolders !== undefined) {
+            this._activeDir = vscode.workspace.workspaceFolders[0].uri.path;
+        }
+        // this._outputchannel = vscode.window.createOutputChannel()
+    }
+
+    public runPython(): void { 
+        console.log(this);
+        if (this._activeFileName !== undefined && this._activeDir !== undefined) {
+            const exp = /.*(?=\.)/;
+            let pdfName = this._activeFileName.match(exp)?.[0];
+
+            if (pdfName === undefined) { return; }
+
+            pdfName = this._activeDir.concat(pdfName);
+            console.log(pdfName);
+            const pdfCommand = `python3 /Users/mihaisiia/GradeFast/gradeFast-1.0/report_generator/report_generator/main.py ${ this._path } ${ this._activeDir + this._activeFilePath } ${ pdfName }`;
+            console.log(pdfCommand);
+            const child = exec(pdfCommand);
+
+            child.on('error', (e) => {
+                console.error(e);
+            });
+
+            child.on('exit', (e) => {
+                // this._runPython();
+                console.log(e);
+            });
+        }
+    }
 }
