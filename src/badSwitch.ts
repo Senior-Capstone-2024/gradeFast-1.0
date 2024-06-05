@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import * as vscode from 'vscode';
 
 export function badSwitch(myMap: Map<number, string[]>) {

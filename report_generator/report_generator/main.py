@@ -37,7 +37,7 @@ def format_doc():
   doc.preamble.append(NoEscape(r'\singlespacing'))
   return doc
 
-def assemble_pdf(json_file_path: str, assignment_path: str):
+def assemble_pdf(json_file_path: str, assignment_path: str, out_dir: str='./out/out'):
   assignment = open(assignment_path).read().splitlines()
 
   # Load JSON data from file
@@ -54,7 +54,7 @@ def assemble_pdf(json_file_path: str, assignment_path: str):
     
   keys = list(data.keys())
   print(keys)
-  with doc.create(Section(NoEscape(r'\centerline{' + keys[0] + '}'), numbering=False)):
+  with doc.create(Section(NoEscape(r'\centerline{Code Report}'), numbering=False)):
     for count, line in enumerate(assignment):
       if data.get(str(count + 1)) is not None:
         text = data.get(str(count + 1))
@@ -65,7 +65,7 @@ def assemble_pdf(json_file_path: str, assignment_path: str):
           text = (line)
           doc.append(text)
   
-  doc.generate_pdf('out/out', clean_tex=False, compiler=PDFLATEX_PATH, compiler_args=['-shell-escape'])
+  doc.generate_pdf(out_dir, clean_tex=False, compiler=PDFLATEX_PATH, compiler_args=['-shell-escape'])
   # doc = format_doc()
   # doc.append(NewPage())
   # doc.generate_pdf('out/out', clean_tex=False, compiler='pdflatex', silent=False)

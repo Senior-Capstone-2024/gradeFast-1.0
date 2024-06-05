@@ -63,10 +63,14 @@
 		"viewsWelcome": [
 			{
 				"view": "gradefast-home",
-				"contents": "Open a student's assignment directory to begin grading. \n[Pick a folder](command:workbench.action.files.openFolder)"
+				"contents": "Open a student's assignment directory to begin grading. \n[Pick a folder](command:workbench.action.files.openFolder)\n[Generate Report](command:extension.generateReport)"
 			}
 		],
 		"commands": [
+			{
+				"command": "extension.generateReport",
+				"title": "Generate Report"
+			},
 			{
 				"command": "mywiki.editNote",
 				"title": "Edit",
