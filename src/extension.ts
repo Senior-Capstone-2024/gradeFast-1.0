@@ -16,6 +16,7 @@ import { longMethod } from './longMethod';
 import { longParameters } from './longParameters';
 import { badSwitch } from './badSwitch';
 import { lazyClass } from './lazyClass';
+import { exec } from 'child_process';
 
 const myMap: Map<number, string[]> = new Map();
 const filePath = 'C:\\Users\\senla\\OneDrive\\Documents\\capstone\\gradeFast-1.0\\output\\data.json';

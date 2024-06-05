@@ -57,11 +57,8 @@ def assemble_pdf(json_file_path: str, assignment_path: str, out_dir: str='./out/
   dotenv_path = path.join(path.dirname(__file__), '.env')
   load_dotenv(dotenv_path)
   PDFLATEX_PATH = os.environ.get('PDFLATEX_PATH')
-    
-    # load path to pdflatex
-    dotenv_path = path.join(path.dirname(__file__), '.env')
-    load_dotenv(dotenv_path)
-    PDFLATEX_PATH = os.environ.get('PDFLATEX_PATH')
+  
+  doc = format_doc()
     
   keys = list(data.keys())
   print(keys)
@@ -80,8 +77,6 @@ def assemble_pdf(json_file_path: str, assignment_path: str, out_dir: str='./out/
   # doc = format_doc()
   # doc.append(NewPage())
   # doc.generate_pdf('out/out', clean_tex=False, compiler='pdflatex', silent=False)
-  
-    doc.generate_pdf('report_out/report_out', clean_tex=False, compiler=PDFLATEX_PATH)
 
 if __name__ == '__main__':
   assemble_pdf(sys.argv[1], sys.argv[2])
