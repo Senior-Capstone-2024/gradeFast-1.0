@@ -11,9 +11,14 @@ import { convertMapToJson } from './convertMapToJson';
 import { findDuplicateCode } from './findDuplicateCode';
 import { findLowercaseEnums } from './findLowercaseEnums';
 import { findConstantCap} from './findConstantCap';
+import { longMethod } from './longMethod';
+import { longParameters } from './longParameters';
+import { badSwitch } from './badSwitch';
 
 const myMap: Map<number, string[]> = new Map();
+
 const filePath = '/Users/mihaisiia/GradeFast/gradeFast-1.0/output/data.json';
+
 
 
 export function activate(context: vscode.ExtensionContext) {
@@ -21,8 +26,12 @@ export function activate(context: vscode.ExtensionContext) {
     
     const disposable = vscode.commands.registerCommand('extension.findCapitalizedPrimitiveTypes', () => {
         findCapitalizedPrimitiveTypes(myMap);
-        convertMapToJson(myMap, filePath);
     });
+
+    const create = vscode.commands.registerCommand('extension.createJSON', ()=> {
+        convertMapToJson(myMap, filePath);
+    }
+    )
 
     const disposable2 = vscode.commands.registerCommand('extension.findCapitalizedMethodName', () => {
         findCapitalizedMethodName(myMap);
@@ -45,6 +54,18 @@ export function activate(context: vscode.ExtensionContext) {
     const disposable0 = vscode.commands.registerCommand('extension.findAllErrors', findAllErrors);
 
     const disposable6 = vscode.commands.registerCommand('extension.findConstantCap', findConstantCap);
+
+    const disposable7 = vscode.commands.registerCommand('extension.longMethod', () => {
+        longMethod(myMap);
+    } );
+
+    const disposable8 = vscode.commands.registerCommand('extension.longParameters', () => {
+        longParameters(myMap);
+    } );
+
+    const disposable9 = vscode.commands.registerCommand('extension.badSwitch', () => {
+        badSwitch(myMap);
+    } );
 
     const commentController = vscode.comments.createCommentController('comment-sample', 'Comment API Sample');
     context.subscriptions.push(commentController);

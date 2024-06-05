@@ -127,6 +127,22 @@
 			{
 				"command": "extension.findDuplicateCode",
 				"title": "findDuplicateCode"
+			},
+			{
+				"command": "extension.longMethod",
+				"title": "findLongMethod"
+			},
+			{
+				"command": "extension.longParameters",
+				"title": "findLongParameters"
+			},
+			{
+				"command": "extension.createJSON",
+				"title": "createJSON"
+			},
+			{
+				"command": "extension.badSwitch",
+				"title": "badSwitch"
 			}
 		],
 		"menus": {
