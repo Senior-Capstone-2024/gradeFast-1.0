@@ -16,10 +16,14 @@ import { longParameters } from './longParameters';
 import { badSwitch } from './badSwitch';
 
 const myMap: Map<number, string[]> = new Map();
-const filePath = 'C:\\Users\\Will\\Desktop\\cw\\gradeFast-1.0\\output\\data.json';
+
+const filePath = '/Users/mihaisiia/GradeFast/gradeFast-1.0/output/data.json';
+
 
 
 export function activate(context: vscode.ExtensionContext) {
+    vscode.commands.executeCommand('workbench.action.files.setActiveEditorReadonlyInSession');
+    
     const disposable = vscode.commands.registerCommand('extension.findCapitalizedPrimitiveTypes', () => {
         findCapitalizedPrimitiveTypes(myMap);
     });

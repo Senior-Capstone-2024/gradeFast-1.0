@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 
-const outputFile = '/Users/willscomputer/gradeFast-1.0/src/errorTxt';
+const outputFile = '/Users/mihaisiia/GradeFast/gradeFast-1.0/src/errorTxt';
 
 export function findCapitalizedPrimitiveTypes(myMap: Map<number, string[]>): Map<number, string[]> {
     vscode.window.showInformationMessage('Naming Convention Mistake!! Highlighted in RED');
