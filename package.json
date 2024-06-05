@@ -104,6 +104,10 @@
 			{
 				"command": "extension.badSwitch",
 				"title": "badSwitch"
+			},
+			{
+				"command": "extension.lazyClass",
+				"title": "lazyClass"
 			}
 		],
 		"menus": {

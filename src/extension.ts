@@ -14,20 +14,20 @@ import { findConstantCap} from './findConstantCap';
 import { longMethod } from './longMethod';
 import { longParameters } from './longParameters';
 import { badSwitch } from './badSwitch';
+import { lazyClass } from './lazyClass';
 
 const myMap: Map<number, string[]> = new Map();
-const filePath = 'C:\\Users\\Will\\Desktop\\cw\\gradeFast-1.0\\output\\data.json';
+const filePath = 'C:\\Users\\senla\\OneDrive\\Documents\\capstone\\gradeFast-1.0\\output\\data.json';
 
 
 export function activate(context: vscode.ExtensionContext) {
     const disposable = vscode.commands.registerCommand('extension.findCapitalizedPrimitiveTypes', () => {
         findCapitalizedPrimitiveTypes(myMap);
-    });
+    } );
 
     const create = vscode.commands.registerCommand('extension.createJSON', ()=> {
         convertMapToJson(myMap, filePath);
-    }
-    )
+    } );
 
     const disposable2 = vscode.commands.registerCommand('extension.findCapitalizedMethodName', () => {
         findCapitalizedMethodName(myMap);
@@ -61,6 +61,10 @@ export function activate(context: vscode.ExtensionContext) {
 
     const disposable9 = vscode.commands.registerCommand('extension.badSwitch', () => {
         badSwitch(myMap);
+    } );
+
+    const disposable10 = vscode.commands.registerCommand('extension.lazyClass', () => {
+        lazyClass(myMap);
     } );
 
     const commentController = vscode.comments.createCommentController('comment-sample', 'Comment API Sample');
